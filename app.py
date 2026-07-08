@@ -131,22 +131,35 @@ if st.button("Generate schedule"):
     else:
         scheduler = Scheduler(schedule_date=schedule_date, owner=owner)
         daily_tasks = scheduler.get_daily_schedule()
+
         if not daily_tasks:
             st.info("No tasks due on this date.")
         else:
-            for pet in owner.get_pets():
-                plan = scheduler.format_pet_daily_plan(pet)
-                st.text(plan)
+            st.success(f"Schedule generated for {len(daily_tasks)} task(s) on {schedule_date}.")
 
-    #     st.warning(
-#         "Not implemented yet. Next step: create your scheduling logic (classes/functions) and call it here."
-#     )
-#     st.markdown(
-#         """
-# Suggested approach:
-# 1. Design your UML (draft).
-# 2. Create class stubs (no logic).
-# 3. Implement scheduling behavior.
-# 4. Connect your scheduler here and display results.
-# """
-#     ) 
+            total_minutes = scheduler.calculate_total_duration(daily_tasks)
+            st.metric("Total planned time", f"{total_minutes} min")
+
+            conflicts = scheduler.detect_conflicts(daily_tasks)
+            if conflicts:
+                for warning in conflicts:
+                    st.warning(warning)
+            else:
+                st.success("No scheduling conflicts detected.")
+
+            for pet in owner.get_pets():
+                pet_tasks = scheduler.sort_by_time(scheduler.generate_schedule(pet))
+                if not pet_tasks:
+                    continue
+                st.markdown(f"#### {pet.name} ({pet.breed})")
+                st.table(
+                    [
+                        {
+                            "time": t.scheduled_time,
+                            "task": t.name,
+                            "duration_minutes": t.duration,
+                            "priority": t.priority_label,
+                        }
+                        for t in pet_tasks
+                    ]
+                )

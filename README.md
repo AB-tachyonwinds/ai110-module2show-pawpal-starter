@@ -90,19 +90,19 @@ tests\test_pawpal.py .....................                                      
 
 | Feature | Method(s) | Notes |
 |---------|-----------|-------|
-| Task sorting | | e.g., by priority, duration |
-| Filtering | | e.g., skip tasks if time runs out |
-| Conflict handling | | e.g., overlapping time slots |
-| Recurring tasks | | e.g., daily vs. weekly |
+| Task sorting | `Scheduler.sort_by_priority`, `Scheduler.sort_by_time` | Sorts tasks highest-to-lowest priority, or chronologically by `scheduled_time` (`HH:MM`) for display in the daily plan |
+| Filtering | `Scheduler.generate_schedule`, `Pet.filter_tasks_by_completion` | Selects only a pet's incomplete tasks whose `due_date` matches the schedule date; owner-wide view aggregated in `generate_schedule_for_owner` |
+| Conflict handling | `Scheduler.detect_conflicts` | Groups scheduled tasks by `scheduled_time` and emits a warning for any time slot shared by 2+ tasks (across pets) |
+| Recurring tasks | `Task.create_next_occurrence`, `Pet.complete_task` | On completion, `daily`/`weekly` tasks (via `RECURRENCE_INTERVALS`) spawn a new incomplete `Task` with `due_date` advanced by the recurrence interval |
 
 ## 📸 Demo Walkthrough
 
 Describe your app in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. Enter a name for the owner, then fill in the pet's name, species, breed, and age, and click **Add pet**.
+2. Select the pet from the **Pet** dropdown (if there is more than one).
+3. Fill in a task's title, duration (in minutes), and priority (low/medium/high), then set its due date and scheduled time (`HH:MM`). Click **Add task**.
+4. Pick a **Schedule date** and click **Generate schedule**.
+5. Review the results: total planned time for the day, any scheduling-conflict warnings for tasks sharing the same time slot, and each pet's daily plan sorted chronologically with task name, duration, and priority.
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or link to a demo video here -->

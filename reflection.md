@@ -42,12 +42,16 @@ Exact time conflict is simpler to implement, which is better for the app's perfo
 **a. How you used AI**
 
 - How did you use AI tools during this project (for example: design brainstorming, debugging, refactoring)?
+I used Claude Code for much of the implementation. It helped me brainstorm and design many of the algorithms used. It also assisted in debugging and integrating the functionality between files. Many times, it would bring up a possible optimization or functionality in python that I wasn't aware about. I would accept it if I understood what it was writing.
 - What kinds of prompts or questions were most helpful?
+Prompts that were focused on one task were the most helpful. Spreading the AI too thinly.
 
 **b. Judgment and verification**
 
 - Describe one moment where you did not accept an AI suggestion as-is.
+In one moment, the AI suggested getting rid of two functions that handled sorting (one for priority and one for time). For the sake of the project, we technically only needed to do one of them, but I did not accept the AI's suggestion to get rid of it because I wanted to keep it in case we wanted to add a toggle that sorted the list based on what the user sets. While in its current form, it might not be the best for our simple implementation but it could be useful for the future.
 - How did you evaluate or verify what the AI suggested?
+I evaluated what I wanted the app to have and what it would impact on the code if I didn't follow the suggestion.
 
 ---
 
@@ -56,12 +60,16 @@ Exact time conflict is simpler to implement, which is better for the app's perfo
 **a. What you tested**
 
 - What behaviors did you test?
+We tested happy cases, specific functionalities (like if a recurring task would reappear), and defensive edge cases (like trying to get rid of a task that doesn't exist).
 - Why were these tests important?
+These tests cover behaviors that users can potentially run into during normal use. 
 
 **b. Confidence**
 
 - How confident are you that your scheduler works correctly?
+I am 80% confident that the scheduler works correctly. While I think much of the logic and implementation makes sense, I feel that my involvement was less present in this project.
 - What edge cases would you test next if you had more time?
+I would test when pets have the same data or adding many instances of conflicting data.
 
 ---
 
@@ -70,11 +78,14 @@ Exact time conflict is simpler to implement, which is better for the app's perfo
 **a. What went well**
 
 - What part of this project are you most satisfied with?
+I am the most satisfied with the testing process. I felt we covered the needed bases for the scope of the project.
 
 **b. What you would improve**
 
 - If you had another iteration, what would you improve or redesign?
+I would simplify the attributes needed for the app and simplify functionality in general. While they can be used for future functions, I felt that many suggestions I allowed at the beginning made it more difficult for me to follow along and untangle in the later stages. Key design choices ended up not being made by me and moreso by the AI. While AI can provide certain insights, the lack of control makes me uncertain on the app's structural integrity.
 
 **c. Key takeaway**
 
 - What is one important thing you learned about designing systems or working with AI on this project?
+If I had one important takeaway, it's definitely be more prepared at the beginning with what you want to create for a system. Oftentimes, the initial draft can give you an idea and good starting point, but it should be considered with more scrutiny especially while working with AI.

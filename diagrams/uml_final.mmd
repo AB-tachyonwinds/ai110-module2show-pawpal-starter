@@ -1,0 +1,68 @@
+classDiagram
+    class Owner {
+        -ownerId: string
+        -name: string
+        -email: string
+        -phone: string
+        -pets: List~Pet~
+        +addPet(pet: Pet) void
+        +removePet(petId: string) void
+        +getPets() List~Pet~
+        +updateContactInfo(email: string, phone: string) void
+    }
+
+    class Pet {
+        -petId: string
+        -name: string
+        -species: string
+        -breed: string
+        -age: int
+        -tasks: List~Task~
+        +addTask(task: Task) void
+        +removeTask(taskId: string) void
+        +getTasks() List~Task~
+        +filterTasksByCompletion(completed: boolean) List~Task~
+        +completeTask(taskId: string) void
+        +updateInfo(name: string, breed: string, age: int) void
+    }
+
+    class Task {
+        -taskId: string
+        -name: string
+        -description: string
+        -duration: int
+        -priority: int
+        -dueDate: Date
+        -petId: string
+        -scheduledTime: string
+        -completed: boolean
+        -recurrence: string
+        +editDuration(minutes: int) void
+        +editPriority(level: int) void
+        +editScheduledTime(scheduledTime: string) void
+        +priorityLabel: string
+        +markComplete() void
+        +markIncomplete() void
+        +createNextOccurrence() Task
+    }
+
+    class Scheduler {
+        -scheduleDate: Date
+        -owner: Owner
+        -scheduledTasks: List~Task~
+        +generateSchedule(pet: Pet) List~Task~
+        +generateScheduleForOwner() List~Task~
+        +sortByPriority(tasks: List~Task~) List~Task~
+        +sortByTime(tasks: List~Task~) List~Task~
+        +calculateTotalDuration(tasks: List~Task~) int
+        +getDailySchedule() List~Task~
+        +formatPetDailyPlan(pet: Pet) string
+        +printDailyPlan() void
+        +detectConflicts(tasks: List~Task~) List~string~
+        +printConflicts() void
+    }
+
+    Owner "1" --> "many" Pet : owns
+    Pet "1" --> "many" Task : has
+    Scheduler "1" --> "1" Owner : schedules for
+    Task "1" ..> "0..1" Task : createNextOccurrence
