@@ -23,12 +23,17 @@ The AI suggestioned that the current design lacked back-references and shortcuts
 **a. Constraints and priorities**
 
 - What constraints does your scheduler consider (for example: time, priority, preferences)?
+The constraints considered are due date, completition status, priority, and scheduled time. Duration is tracked by not enforced currently.
+
 - How did you decide which constraints mattered most?
+I tried to decide it based on what I imagined a pet owner would want. Some constraints are treated more importantly than others, such as the due date.
 
 **b. Tradeoffs**
 
 - Describe one tradeoff your scheduler makes.
+My scheduler has exact time-match conflicts, but does not check for overlap.
 - Why is that tradeoff reasonable for this scenario?
+Exact time conflict is simpler to implement, which is better for the app's performance. For pet owners, many tasks are shorter and the exact time conflict will help catch accidents.
 
 ---
 
