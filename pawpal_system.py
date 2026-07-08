@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 
 
 PRIORITY_LABELS = {1: "low", 2: "medium", 3: "high"}
@@ -167,7 +167,10 @@ class Scheduler:
 
     def sort_by_time(self, tasks: list[Task]) -> list[Task]:
         """Return the tasks sorted by scheduled time."""
-        return sorted(tasks, key=lambda task: task.scheduled_time)
+        return sorted(
+            tasks,
+            key=lambda task: datetime.strptime(task.scheduled_time, "%H:%M").time(),
+        )
 
     def format_pet_daily_plan(self, pet: Pet) -> str:
         """Return a formatted string of the pet's daily task plan."""

@@ -61,16 +61,27 @@ Total scheduled time: 55 minutes
 
 ```bash
 # Run the full test suite:
-pytest
+python -m pytest
 
 # Run with coverage:
 pytest --cov
 ```
 
+The tests cover basic app functionality (adding a task), recurrence for tasks, sorting lists, scheduling and conflicts, and edge cases like removing a nonexistent task.
+Confidence level: 4
+
 Sample test output:
 
 ```
-# Paste your pytest output here
+============================================ test session starts =============================================
+platform win32 -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0
+rootdir: [your rootdir]
+plugins: anyio-4.14.1
+collected 21 items                                                                                            
+
+tests\test_pawpal.py .....................                                                              [100%]
+
+============================================= 21 passed in 0.06s =============================================
 ```
 
 ## 📐 Smarter Scheduling
