@@ -1,0 +1,50 @@
+classDiagram
+    class Owner {
+        -ownerId: string
+        -name: string
+        -email: string
+        -phone: string
+        +addPet(pet: Pet) void
+        +removePet(petId: string) void
+        +getPets() List~Pet~
+        +updateContactInfo(email: string, phone: string) void
+    }
+
+    class Pet {
+        -petId: string
+        -name: string
+        -species: string
+        -breed: string
+        -age: int
+        -tasks: List~Task~
+        +addTask(task: Task) void
+        +removeTask(taskId: string) void
+        +getTasks() List~Task~
+        +updateInfo(name: string, breed: string, age: int) void
+    }
+
+    class Task {
+        -taskId: string
+        -name: string
+        -description: string
+        -duration: int
+        -priority: int
+        -completed: boolean
+        +editDuration(minutes: int) void
+        +editPriority(level: int) void
+        +markComplete() void
+        +markIncomplete() void
+    }
+
+    class Scheduler {
+        -scheduleDate: Date
+        -scheduledTasks: List~Task~
+        +generateSchedule(pet: Pet) List~Task~
+        +sortByPriority(tasks: List~Task~) List~Task~
+        +calculateTotalDuration(tasks: List~Task~) int
+        +getDailySchedule() List~Task~
+    }
+
+    Owner "1" --> "many" Pet : owns
+    Pet "1" --> "many" Task : has
+    Scheduler "1" --> "many" Task : schedules
