@@ -9,6 +9,8 @@ class Task:
     description: str
     duration: int
     priority: int
+    due_date: date
+    pet_id: str
     completed: bool = False
 
     def edit_duration(self, minutes: int) -> None:
@@ -34,6 +36,8 @@ class Pet:
     tasks: list[Task] = field(default_factory=list)
 
     def add_task(self, task: Task) -> None:
+        # task.pet_id = self.pet_id
+        # self.tasks.append(task)
         pass
 
     def remove_task(self, task_id: str) -> None:
@@ -70,9 +74,17 @@ class Owner:
 @dataclass
 class Scheduler:
     schedule_date: date
+    owner: Owner
     scheduled_tasks: list[Task] = field(default_factory=list)
 
     def generate_schedule(self, pet: Pet) -> list[Task]:
+        pass
+
+    def generate_schedule_for_owner(self) -> list[Task]:
+        # self.scheduled_tasks = []
+        # for pet in self.owner.pets:
+        #     self.scheduled_tasks.extend(self.generate_schedule(pet))
+        # return self.scheduled_tasks
         pass
 
     def sort_by_priority(self, tasks: list[Task]) -> list[Task]:

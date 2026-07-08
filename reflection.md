@@ -5,12 +5,16 @@
 **a. Initial design**
 
 - Briefly describe your initial UML design.
+Using Owner, Pet, Task, and Scheduler, we created a fairly minimal design for a pet scheduling app. Owners can have many pets and Pets can have many tasks. A scheduler can have many tasks.
 - What classes did you include, and what responsibilities did you assign to each?
+I only included the main 4 classes that are required. An owner has their information and the pet attached to them. The pets will have tasks attached to them that can be used to create a schedule based off the pet chosen.
 
 **b. Design changes**
 
 - Did your design change during implementation?
+It changed a bit during implementation while looking for bottlenecks.
 - If yes, describe at least one change and why you made it.
+The AI suggestioned that the current design lacked back-references and shortcuts. We added pet and owner attributes to task and scheduler respectively for potential flexibility in the future. We also covered future bottlenecks such has a task having no due-date, which would prevent the scheduler's schedule_date from having a date to reference.
 
 ---
 
